@@ -1,0 +1,132 @@
+.sidebar {
+  width: 240px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar__content {
+  padding: 20px 0;
+}
+
+.sidebar__category {
+  margin-bottom: 24px;
+}
+
+.sidebar__category:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar__category-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0 20px;
+  margin-bottom: 8px;
+}
+
+.sidebar__project-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__project-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: left;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.sidebar__project-item:hover {
+  background: var(--accent-bg);
+  color: var(--text-primary);
+}
+
+.sidebar__project-item.is-active {
+  color: var(--text-primary);
+  background: var(--accent-bg);
+}
+
+.sidebar__project-item.is-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--text-primary);
+}
+
+.sidebar__project-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.sidebar__project-item.is-active .sidebar__project-dot {
+  background: var(--text-primary);
+}
+
+.sidebar__project-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 遮罩层（移动端） */
+.sidebar__overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.sidebar__overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 响应式 - 移动端抽屉 */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    width: 280px;
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+    padding-top: 48px;
+  }
+
+  .sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .sidebar.is-closed {
+    transform: translateX(-100%);
+  }
+
+  .sidebar__overlay {
+    display: block;
+  }
+}

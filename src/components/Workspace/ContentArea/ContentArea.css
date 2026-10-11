@@ -1,0 +1,13 @@
+.content-area {
+  flex: 1;
+  overflow: hidden;
+  background: var(--bg);
+  position: relative;
+}
+
+.content-view {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
